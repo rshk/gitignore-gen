@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body_content %}
+
+<form method="POST" action="/">
+{% for group, items in gitignores.iteritems() %}
+    <fieldset>
+        <legend>{{ group or "Default group" }}</legend>
+        {% for item in items %}
+        <label>
+            <input type="checkbox" name="enabled_gitignores" value="{{ item.1 }}">
+            {{ item.0 }}
+        </label><br>
+        {% endfor %}
+    </fieldset>
+{% endfor %}
+    <button type="submit">Generate</button>
+</form>
+
+{% endblock %}
