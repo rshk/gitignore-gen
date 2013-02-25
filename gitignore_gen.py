@@ -67,7 +67,7 @@ if __name__ == '__main__':
                       help="Directory containing the gitignore files. Usually"
                            "a git clone of https://github.com/github/gitignore")
     parser.add_option('--host', action='store', dest='listen_host',
-                      default='127.0.0.1', metavar='ADDRESS',
+                      default='0.0.0.0', metavar='ADDRESS',
                       help="Address on which to listen")
     parser.add_option('--port', action='store', dest='listen_port',
                       type='int', metavar='PORT',
@@ -90,5 +90,5 @@ if __name__ == '__main__':
 
     app.run(
         host=options.listen_host,
-        port=options.port,
+        port=port,
         debug=options.debug)
