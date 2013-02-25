@@ -78,9 +78,10 @@ if __name__ == '__main__':
 
     options, args = parser.parse_args()
 
-    GITIGNORE_DIR = options.gitignore_dir
-
-    assert GITIGNORE_DIR is not None
+    if options.gitignore_dir is not None:
+        GITIGNORE_DIR = options.gitignore_dir
+    else:
+        GITIGNORE_DIR = os.path.join(os.path.dirname(__file__), 'gitignore')
 
     app.run(
         host=options.listen_host,
