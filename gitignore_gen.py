@@ -70,7 +70,7 @@ if __name__ == '__main__':
                       default='127.0.0.1', metavar='ADDRESS',
                       help="Address on which to listen")
     parser.add_option('--port', action='store', dest='listen_port',
-                      type='int', default=5000, metavar='ADDRESS',
+                      type='int', metavar='PORT',
                       help="TCP port on which to listen")
     parser.add_option('--debug', action='store_true', dest='debug',
                       default=False,
@@ -83,7 +83,12 @@ if __name__ == '__main__':
     else:
         GITIGNORE_DIR = os.path.join(os.path.dirname(__file__), 'gitignore')
 
+    if options.listen_port is not None:
+        port = options.listen_port
+    else:
+        port = os.environ.get('PORT', 5000)
+
     app.run(
         host=options.listen_host,
-        port=options.listen_port,
+        port=options.port,
         debug=options.debug)
